@@ -1,6 +1,6 @@
-// Datei: SupportMethods.java
+// Datei: StandardOutput.java
 // Autor: Tobi Wan
-// Datum: 02.06.2016
+// Datum: 08.06.2016
 /*----------------------------------------------------------------------
    Die Klasse enthaelt:
    Getter & Setter:
@@ -26,8 +26,14 @@
       String generateSeparation()
       void printSeparation()
       void printlnSeparation()
+      void printlnArray(Object[])
+      void printlnMultiStepArray(Object[][])
  ----------------------------------------------------------------------*/
-package Support;
+package tobi_wan.support;
+
+import java.util.Arrays;
+
+
 
 public class StandardOutput {
    // Attribute
@@ -43,8 +49,8 @@ public class StandardOutput {
       return separator;
    } // getSeparator
 
-   public void setSeparatorReptition(int amount) {
-      this.separatorReptition = amount;
+   public void setSeparatorReptition(int separatorReptition) {
+      this.separatorReptition = separatorReptition;
    } // setAmount
 
    public int getSeparatorReptition() {
@@ -52,9 +58,9 @@ public class StandardOutput {
    } // getAmount
 
    // Konstruktor
-   public StandardOutput(String separator, int amount) {
+   public StandardOutput(String separator, int separatorReptition) {
       setSeparator(separator);
-      setSeparatorReptition(amount);
+      setSeparatorReptition(separatorReptition);
    } // SupportMethods
 
    private StandardOutput() {
@@ -138,5 +144,15 @@ public class StandardOutput {
       // Erzeugt die Ausgabe einer Trennzeile mit Zeilenumbruch
       println(generateSeparation());
    } // printlnSeparator
+
+   public void printlnArray(Object [] array) {
+      // Gibt ein einstufiges Array aus
+      println(Arrays.toString(array));
+   } // printlnArray
+
+   public void printlnMultiStepArray(Object [] [] array) {
+      // Gibt ein mehrstufiges Array aus
+      println(Arrays.deepToString(array));
+   } // printlnMultiStepArray
 
 } // class SupportMethods
