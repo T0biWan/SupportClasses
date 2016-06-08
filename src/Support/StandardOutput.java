@@ -29,7 +29,7 @@
  ----------------------------------------------------------------------*/
 package Support;
 
-public class SupportMethods {
+public class StandardOutput {
    // Attribute
    String separator;
    int    separatorReptition;
@@ -52,17 +52,17 @@ public class SupportMethods {
    } // getAmount
 
    // Konstruktor
-   public SupportMethods(String separator, int amount) {
+   public StandardOutput(String separator, int amount) {
       setSeparator(separator);
       setSeparatorReptition(amount);
    } // SupportMethods
 
-   private SupportMethods() {
+   private StandardOutput() {
       this("*", 10);
    } // SupportMethods
 
-   public static SupportMethods defaultSupportMethods() {
-      return new SupportMethods();
+   public static StandardOutput defaultSupportMethods() {
+      return new StandardOutput();
    } // defaultSupportMethods
 
    // Methoden
