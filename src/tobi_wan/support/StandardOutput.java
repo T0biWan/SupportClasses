@@ -67,7 +67,7 @@ public class StandardOutput {
    } // SupportMethods
 
    private StandardOutput() {
-      this("*", 10);
+      this("*", 80);
    } // SupportMethods
 
    public static StandardOutput defaultSupportMethods() {
