@@ -26,8 +26,11 @@
       String generateSeparation()
       void printSeparation()
       void printlnSeparation()
+      String arrayToString(Object[] array)
+      void printArray(Object[] array)
+      void printDoubleStepArray(Object[][] array)
       void printlnArray(Object[])
-      void printlnMultiStepArray(Object[][])
+      void printlnDoubleStepArray(Object[][])
  ----------------------------------------------------------------------*/
 package tobi_wan.support;
 
@@ -145,14 +148,29 @@ public class StandardOutput {
       println(generateSeparation());
    } // printlnSeparator
 
+   public String arrayToString(Object [] array) {
+      // Wandelt ein Array in einen leserlichen String
+      return Arrays.toString(array);
+   } // arrayToString
+
    public void printlnArray(Object [] array) {
       // Gibt ein einstufiges Array aus
-      println(Arrays.toString(array));
+      println(arrayToString(array));
    } // printlnArray
 
-   public void printlnMultiStepArray(Object [] [] array) {
+   public void printlnDoubleStepArray(Object [] [] array) {
       // Gibt ein mehrstufiges Array aus
       println(Arrays.deepToString(array));
-   } // printlnMultiStepArray
+   } // printlnDoubleStepArray
+
+   public void printArray(Object [] array) {
+      // Gibt ein einstufiges Array aus
+      print(arrayToString(array));
+   } // printArray
+
+   public void printDoubleStepArray(Object [] [] array) {
+      // Gibt ein mehrstufiges Array aus
+      print(Arrays.deepToString(array));
+   } // printMultiStepArray
 
 } // class SupportMethods

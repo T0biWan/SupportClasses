@@ -1,4 +1,4 @@
-package tobi_wan.support;
+package tobi_wan.IO;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,8 +19,8 @@ public class IOStream {
    }
 
    // Konstruktor
-   public IOStream(String path) {
-      setPath(path);
+   public IOStream() {
+
    }
 
    // Methoden

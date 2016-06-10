@@ -1,4 +1,4 @@
-package tobi_wan.support;
+package tobi_wan.IO;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,13 +19,13 @@ public class IOStreamCSV extends IOStream {
    }
 
    // Konstruktor
-   public IOStreamCSV(String path, String separator) {
-      super(path);
+   public IOStreamCSV(String separator) {
+      super();
       setSeparator(separator);
    }
 
    // Methoden
-   public void writeCSV(ArrayList<String> data) throws IOException {
+   public void writeCSV(String path, ArrayList<String> data) throws IOException {
 
    }
 
