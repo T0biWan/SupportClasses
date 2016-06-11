@@ -32,12 +32,12 @@ import tobi_wan.support.StandardOutput;
 
 public class Table {
    // Attribute
-   StandardOutput s = StandardOutput.defaultSupportMethods();
-   private String              tableName;
-   private int                 numberOfColumns;
-   private String []           columnNames;
-   private String []           tableRows;
-   public ArrayList<String []> data = new ArrayList<>();
+   StandardOutput               s    = StandardOutput.defaultSupportMethods();
+   private String               tableName;
+   private int                  numberOfColumns;
+   private String []            columnNames;
+   private String []            tableRows;
+   private ArrayList<String []> data = new ArrayList<>();
 
    // Konstruktor
    public Table(String tableName, String [] columnNames) {
