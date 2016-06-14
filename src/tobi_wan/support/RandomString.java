@@ -1,4 +1,4 @@
-// Datei: RandomStringGenerator.java
+// Datei: RandomString.java
 // Autor: Tobi Wan
 // Datum: 14.06.2016
 /*----------------------------------------------------------------------
@@ -7,7 +7,7 @@
       RandomStringGenerator()
       
    Methoden:
-      String generateRandomString(int)
+      String makeRandomString(int)
  ----------------------------------------------------------------------*/
 package tobi_wan.support;
 
@@ -16,17 +16,17 @@ import java.util.Random;
 
 
 
-public class RandomStringGenerator {
+public class RandomString {
    // Attribute
    private static char [] VALID_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456879".toCharArray();
 
    // Konstruktor
-   public RandomStringGenerator() {
+   public RandomString() {
 
-   }
+   } // RandomString
 
    // Methode
-   public String generateRandomString(int stringLaennge) {
+   public String makeRandomString(int stringLaennge) {
       // Attribute
       SecureRandom randomSeed = new SecureRandom();
       Random random = new Random();
