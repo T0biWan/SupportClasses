@@ -4,7 +4,7 @@
 /*----------------------------------------------------------------------
    Die Klasse enthaelt:
    Konstruktor:
-      Table(String, String[])
+      Table(String, String...)
         
    Getter & Setter:
       String getTableName()
@@ -40,7 +40,7 @@ public class Table {
    private ArrayList<String []> data = new ArrayList<>();
 
    // Konstruktor
-   public Table(String tableName, String [] columnNames) {
+   public Table(String tableName, String... columnNames) {
       setTableName(tableName);
       setColumnNames(columnNames);
       setNumberOfColumns();
