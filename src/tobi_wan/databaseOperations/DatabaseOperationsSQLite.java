@@ -1,4 +1,4 @@
-package tobi_wan.database;
+package tobi_wan.databaseOperations;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
