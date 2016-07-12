@@ -13,10 +13,10 @@ import tobi_wan.support.StringContainingIntegerValue;
 
 
 public class DatabaseOperationsSQLite {
-   private Connection              connection;
-   private Statement               statement;
-   private PreparedStatement       preparedStatement;
-   private ResultSet               resultSet;
+   private Connection                   connection;
+   private Statement                    statement;
+   private PreparedStatement            preparedStatement;
+   private ResultSet                    resultSet;
    private StringContainingIntegerValue si = new StringContainingIntegerValue();
 
    public DatabaseOperationsSQLite() {
@@ -58,31 +58,12 @@ public class DatabaseOperationsSQLite {
       preparedStatement = connection.prepareStatement(insertStatement);
       for (int row = 0; row < table.getNumberOfRows(); row++) {
          for (int column = 0; column < table.getNumberOfColumns(); column++) {
-            // preparedStatement.setInt(1,
-            // Integer.parseInt(input.getRow(i)[0]));
-            // preparedStatement.setString(2, input.getRow(i)[1]);
-            // preparedStatement.executeUpdate();
-
-            // if (table.getDatatypesOfColumns()[column] == "int") {
-            // getPreparedStatement().setInt(sqlColumn,
-            // Integer.parseInt(table.getRow(row)[column]));
-            // } else if (table.getDatatypesOfColumns()[column] == "String") {
-            // getPreparedStatement().setString(sqlColumn,
-            // table.getRow(row)[column]);
-            // }
-
             int sqlColumn = column + 1;
             String input = table.getRow(row)[column];
-            // System.out.println("Column: " + sqlColumn);
-            // System.out.println(input);
-            System.out.println(sqlColumn);
-            // if (si.isNumber(input)) preparedStatement.setInt(sqlColumn,
-            // si.parseStringToInt(input));
-            // else preparedStatement.setString(sqlColumn, input);
-            // preparedStatement.executeUpdate();
+            if (si.isNumber(input))
+               preparedStatement.setInt(sqlColumn, si.parseStringToInt(input));
+            else preparedStatement.setString(sqlColumn, input);
          }
-         preparedStatement.setInt(1, si.parseStringToInt(table.getRow(row)[0]));
-         preparedStatement.setString(2, table.getRow(row)[1]);
          preparedStatement.executeUpdate();
       }
       connection.commit();
