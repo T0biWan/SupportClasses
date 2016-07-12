@@ -37,16 +37,16 @@ public class DatabaseOperationsSQLite {
       if (connection != null) connection.close();
    }
 
-   public void sqlDataDefinition(String sqlStatement) throws SQLException {
-      statement.executeUpdate(sqlStatement);
+   public void sqlDataDefinition(String sqlDDLStatement) throws SQLException {
+      statement.executeUpdate(sqlDDLStatement);
    }
 
-   public ResultSet sqlDataManipulation(String sqlStatement) throws SQLException {
-      return statement.executeQuery(sqlStatement);
+   public ResultSet sqlDataManipulation(String sqlDMLStatement) throws SQLException {
+      return statement.executeQuery(sqlDMLStatement);
    }
 
    private String makeDropTableString(String tableName) {
-      return "DROP TABLE " + tableName;
+      return "DROP TABLE IF EXISTS " + tableName;
    }
 
    public void dropTable(String tableName) throws SQLException {
