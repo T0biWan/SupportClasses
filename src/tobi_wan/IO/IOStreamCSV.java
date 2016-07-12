@@ -1,7 +1,9 @@
 package tobi_wan.IO;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 
 
@@ -25,11 +27,11 @@ public class IOStreamCSV extends IOStream {
    }
 
    // Methoden
-   public void writeCSV(String path, ArrayList<String> data) throws IOException {
+   public void writeCSV(String path, List<String> data) throws IOException {
 
    }
 
-   public ArrayList<String> readCSV() throws IOException {
-      return null;
+   public List readCSV(String path) throws IOException {
+      return Files.readAllLines(Paths.get(path));
    }
 }

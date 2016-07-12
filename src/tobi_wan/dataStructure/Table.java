@@ -72,7 +72,7 @@ public class Table {
       return columnNames;
    } // getColumnNames
 
-   public void setColumnNames(String... columnNames) {
+   private void setColumnNames(String... columnNames) {
       this.columnNames = columnNames;
       setNumberOfColumns();
    } // setColumnNames

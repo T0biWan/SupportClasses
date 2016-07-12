@@ -35,6 +35,7 @@
 package tobi_wan.support;
 
 import java.util.Arrays;
+import java.util.Collection;
 
 
 
@@ -172,5 +173,11 @@ public class StandardOutput {
       // Gibt ein mehrstufiges Array aus
       print(Arrays.deepToString(array));
    } // printMultiStepArray
+
+   public void printlnCollection(Collection collection) {
+      for (Object element : collection) {
+         println(element);
+      }
+   }
 
 } // class SupportMethods
