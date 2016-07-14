@@ -40,14 +40,15 @@ public class Table {
    private String []                    tableRows;
    private ArrayList<String []>         data            = new ArrayList<>();
    String                               border          = "|";
-   String                               line            = "-";
+   String                               separator       = "-";
    String                               connector       = "+";
-   String                               leftBorder      = border + " ";
-   String                               middleBorder    = " " + border + " ";
-   String                               rightBorder     = " " + border;
-   String                               leftConnecter   = connector + line;
-   String                               middleConnecter = line + connector + line;
-   String                               rightConnecter  = line + connector;
+   String                               space           = " ";
+   String                               leftBorder      = border + space;
+   String                               middleBorder    = space + border + space;
+   String                               rightBorder     = space + border;
+   String                               leftConnecter   = connector + separator;
+   String                               middleConnecter = separator + connector + separator;
+   String                               rightConnecter  = separator + connector;
 
    // Konstruktor
    public Table(ArrayList<String []> data) {
@@ -103,7 +104,7 @@ public class Table {
       System.out.print(leftConnecter);
       for (int i = 0; i < numberOfColumns; i++) {
          for (int j = 0; j < maxStringLengthOfColumn[i]; j++) {
-            System.out.print(line);
+            System.out.print(separator);
          }
          if (i < numberOfColumns - 1) System.out.print(middleConnecter);
       }
