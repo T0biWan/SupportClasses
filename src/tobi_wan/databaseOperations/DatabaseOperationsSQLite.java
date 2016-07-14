@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import tobi_wan.dataStructure.Table;
 import tobi_wan.support.StringContainingIntegerValue;
 
@@ -70,35 +70,18 @@ public class DatabaseOperationsSQLite {
       connection.setAutoCommit(true);
    }
 
-   private String generateTableHeadFromResultSet(ResultSet resultSet) throws SQLException {
-      String string = "";
-      ResultSetMetaData meta = resultSet.getMetaData();
-      int columnNumber = meta.getColumnCount();
-      for (int i = 1; i <= columnNumber; i++) {
-         string += meta.getColumnName(i) + "\t";
-      }
-      string += "\n";
-      return string;
-   }
-
-   private String generateTableBodyFromResultSet(ResultSet resultSet) throws SQLException {
-      ResultSetMetaData meta = resultSet.getMetaData();
-      int columnNumber = meta.getColumnCount();
-      String string = "";
+   public Table tableOutOfQuery(String sqlDMLStatement) throws SQLException {
+      ResultSet resultSet = sqlDataManipulation(sqlDMLStatement);
+      int numberOfColumns = resultSet.getMetaData().getColumnCount();
+      ArrayList<String []> data = new ArrayList();
       while (resultSet.next()) {
-         for (int i = 1; i <= columnNumber; i++) {
-            string += resultSet.getString(i) + "\t";
+         String [] row = new String [numberOfColumns];
+         for (int i = 1; i <= numberOfColumns; i++) {
+            row[i - 1] = resultSet.getString(i);
          }
-         string += "\n";
+         data.add(row);
       }
-      return string;
+      return new Table(data);
    }
 
-   private String generateTableFromResultSet(ResultSet resultSet) throws SQLException {
-      return generateTableHeadFromResultSet(resultSet) + generateTableBodyFromResultSet(resultSet);
-   }
-
-   public String generateTableFromQuery(String queryStatement) throws SQLException {
-      return generateTableFromResultSet(sqlDataManipulation(queryStatement));
-   }
 }

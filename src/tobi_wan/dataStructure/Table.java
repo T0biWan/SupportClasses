@@ -27,24 +27,32 @@ package tobi_wan.dataStructure;
 
 import java.util.ArrayList;
 import tobi_wan.support.StandardOutput;
+import tobi_wan.support.StringContainingIntegerValue;
 
 
 
 public class Table {
    // Attribute
-   StandardOutput               s    = StandardOutput.defaultSupportMethods();
-   private String               tableName;
-   private int                  numberOfColumns;
-   private String []            columnNames;
-   private String []            tableRows;
-   private ArrayList<String []> data = new ArrayList<>();
+   private StandardOutput               s               = StandardOutput.defaultSupportMethods();
+   private StringContainingIntegerValue si              = new StringContainingIntegerValue();
+   private String                       tableName;
+   private int                          numberOfColumns;
+   private String []                    tableRows;
+   private ArrayList<String []>         data            = new ArrayList<>();
+   String                               border          = "|";
+   String                               line            = "-";
+   String                               connector       = "+";
+   String                               leftBorder      = border + " ";
+   String                               middleBorder    = " " + border + " ";
+   String                               rightBorder     = " " + border;
+   String                               leftConnecter   = connector + line;
+   String                               middleConnecter = line + connector + line;
+   String                               rightConnecter  = line + connector;
 
    // Konstruktor
-   public Table(String tableName, String... columnNames) {
-      setTableName(tableName);
-      setColumnNames(columnNames);
+   public Table(ArrayList<String []> data) {
+      this.data = data;
       setNumberOfColumns();
-      tableRows = new String [getNumberOfColumns()];
    } // Table
 
    // Getter & Setter
@@ -61,21 +69,12 @@ public class Table {
    } // getNumberOfColumns
 
    private void setNumberOfColumns() {
-      this.numberOfColumns = columnNames.length;
+      this.numberOfColumns = data.get(0).length;
    } // setNumberOfColumns
 
    public int getNumberOfRows() {
       return data.size();
    } // getNumberOfRows
-
-   public String [] getColumnNames() {
-      return columnNames;
-   } // getColumnNames
-
-   private void setColumnNames(String... columnNames) {
-      this.columnNames = columnNames;
-      setNumberOfColumns();
-   } // setColumnNames
 
    // Methoden
    public void addRow(String [] tableRow) {
@@ -90,20 +89,71 @@ public class Table {
       data.remove(getRow(row));
    } // deleteRow
 
+   public void addAllRows(ArrayList<String []> tableData) {
+      data = tableData;
+      setNumberOfColumns();
+   }
+
    public ArrayList<String []> getAllRows() {
       return data;
    } // getAllRows
 
-   public String toString() {
-      String string = "Table:\nName:\t\t" + getTableName() + "\nColumns:\t" + getNumberOfColumns() + "\nRows:\t\t" + getNumberOfRows() + "\n";
-      string += s.arrayToString(columnNames) + "\n";
-      for (int i = 0; i < getNumberOfRows(); i++)
-         string += s.arrayToString(getRow(i)) + "\n";
-      return string;
-   } // toString
+   private void printTableSeparation() {
+      int [] maxStringLengthOfColumn = getMaxStringLengthOfColumn();
+      System.out.print(leftConnecter);
+      for (int i = 0; i < numberOfColumns; i++) {
+         for (int j = 0; j < maxStringLengthOfColumn[i]; j++) {
+            System.out.print(line);
+         }
+         if (i < numberOfColumns - 1) System.out.print(middleConnecter);
+      }
+      System.out.println(rightConnecter);
+   }
+
+   private int [] getMaxStringLengthOfColumn() {
+      int [] maxStringLengthOfColumn = new int [numberOfColumns];
+      for (int i = 0; i < data.size(); i++) {
+         for (int column = 0; column < numberOfColumns; column++) {
+            int elementLength = data.get(i)[column].length();
+            if (maxStringLengthOfColumn[column] < elementLength) maxStringLengthOfColumn[column] = elementLength;
+         }
+      }
+      return maxStringLengthOfColumn;
+   }
+
+   private void printTableRow(int row) {
+      int [] maxStringLengthOfColumn = getMaxStringLengthOfColumn();
+      System.out.print(leftBorder);
+      for (int column = 0; column < numberOfColumns; column++) {
+         String element = data.get(row)[column];
+         if (si.isNumber(element)) {
+            System.out.printf("%" + maxStringLengthOfColumn[column] + "s", element);
+         } else {
+            System.out.printf("%-" + maxStringLengthOfColumn[column] + "s", element);
+         }
+         if (column < numberOfColumns - 1) System.out.print(middleBorder);
+      }
+      System.out.println(rightBorder);
+   }
 
    public void printTable() {
-      s.println(toString());
-   } // printTable
+      int [] maxStringLengthOfColumn = getMaxStringLengthOfColumn();
+      printTableSeparation();
+      printTableRow(0);
+      printTableSeparation();
+      for (int row = 1; row < data.size(); row++) {
+         printTableRow(row);
+      }
+      printTableSeparation();
+   }
+
+   public void printTableWithoutColumnTitle() {
+      int [] maxStringLengthOfColumn = getMaxStringLengthOfColumn();
+      printTableSeparation();
+      for (int row = 0; row < data.size(); row++) {
+         printTableRow(row);
+      }
+      printTableSeparation();
+   }
 
 } // class Table
