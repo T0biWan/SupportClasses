@@ -26,14 +26,12 @@
 package tobi_wan.dataStructure;
 
 import java.util.ArrayList;
-import tobi_wan.support.StandardOutput;
 import tobi_wan.support.StringContainingIntegerValue;
 
 
 
 public class Table {
    // Attribute
-   private StandardOutput               s               = StandardOutput.defaultSupportMethods();
    private StringContainingIntegerValue si              = new StringContainingIntegerValue();
    private String                       tableName;
    private int                          numberOfColumns;
@@ -51,10 +49,18 @@ public class Table {
    String                               rightConnecter  = separator + connector;
 
    // Konstruktor
+   public Table(int numberOfColumns) {
+      this.numberOfColumns = numberOfColumns;
+   } // Table
+
    public Table(ArrayList<String []> data) {
       this.data = data;
-      setNumberOfColumns();
-   } // Table
+      setNumberOfRows();
+   }
+
+   public Table() {
+
+   }
 
    // Getter & Setter
    public String getTableName() {
@@ -69,17 +75,17 @@ public class Table {
       return numberOfColumns;
    } // getNumberOfColumns
 
-   private void setNumberOfColumns() {
-      this.numberOfColumns = data.get(0).length;
-   } // setNumberOfColumns
-
    public int getNumberOfRows() {
       return data.size();
    } // getNumberOfRows
 
+   private void setNumberOfRows() {
+      numberOfColumns = data.get(0).length;
+   }
+
    // Methoden
    public void addRow(String [] tableRow) {
-      data.add(tableRow);
+      if (tableRow.length == numberOfColumns) data.add(tableRow);
    } // addRow
 
    public String [] getRow(int row) {
@@ -90,9 +96,13 @@ public class Table {
       data.remove(getRow(row));
    } // deleteRow
 
+   public void deleteAllRows() {
+      data.clear();
+   }
+
    public void addAllRows(ArrayList<String []> tableData) {
       data = tableData;
-      setNumberOfColumns();
+      setNumberOfRows();
    }
 
    public ArrayList<String []> getAllRows() {
