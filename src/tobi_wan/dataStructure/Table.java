@@ -27,14 +27,14 @@ package tobi_wan.dataStructure;
 
 import java.util.ArrayList;
 import tobi_wan.support.StandardOutput;
-import tobi_wan.support.StringContainingIntegerValue;
+import tobi_wan.support.StringOperations;
 
 
 
 public class Table {
    // Attribute
    static StandardOutput                s               = new StandardOutput();
-   private StringContainingIntegerValue si              = new StringContainingIntegerValue();
+   private StringOperations si              = new StringOperations();
    private String                       tableName;
    private int                          numberOfColumns;
    private String []                    tableRows;
@@ -139,7 +139,7 @@ public class Table {
       s.print(leftBorder);
       for (int column = 0; column < numberOfColumns; column++) {
          String element = data.get(row)[column];
-         if (si.isNumber(element)) {
+         if (si.stringIsNumber(element)) {
             s.printf("%" + maxStringLengthOfColumn[column] + "s", element);
          } else {
             s.printf("%-" + maxStringLengthOfColumn[column] + "s", element);

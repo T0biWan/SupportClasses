@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import tobi_wan.dataStructure.Table;
-import tobi_wan.support.StringContainingIntegerValue;
+import tobi_wan.support.StringOperations;
 
 
 
@@ -18,7 +18,7 @@ public class DatabaseOperationsSQLite {
    private Statement                    statement;
    private PreparedStatement            preparedStatement;
    private ResultSet                    resultSet;
-   private StringContainingIntegerValue si = new StringContainingIntegerValue();
+   private StringOperations si = new StringOperations();
 
    public DatabaseOperationsSQLite() {
       connection = null;
@@ -61,7 +61,7 @@ public class DatabaseOperationsSQLite {
          for (int column = 0; column < table.getNumberOfColumns(); column++) {
             int sqlColumn = column + 1;
             String input = table.getRow(row)[column];
-            if (si.isNumber(input))
+            if (si.stringIsNumber(input))
                preparedStatement.setInt(sqlColumn, si.parseStringToInt(input));
             else preparedStatement.setString(sqlColumn, input);
          }
