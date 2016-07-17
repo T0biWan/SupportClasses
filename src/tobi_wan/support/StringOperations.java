@@ -34,24 +34,35 @@ public class StringOperations {
       }
       return new String(zeichen);
    } // generateRandomString
-   
-   public String cleanUpString(String input){
-      String output ="";
+
+   public String cleanUpString(String input) {
+      String output = "";
       for (char character : input.toCharArray()) {
          output += changeUmlaut(character);
       }
       return output;
    }
-   
+
    private String changeUmlaut(char input) {
       String output = "" + input;
-      if(input == 'Ä') output = "Ae";
-      else if(input == 'Ö') output = "Oe";
-      else if(input == 'Ü') output = "Ue";
-      else if(input == 'ä') output = "ae";
-      else if(input == 'ö') output = "oe";
-      else if(input == 'ü') output = "ue";
-      else if(input == 'ß') output = "ss";
+      if (input == 'Ä')
+         output = "Ae";
+      else if (input == 'Ö')
+         output = "Oe";
+      else if (input == 'Ü')
+         output = "Ue";
+      else if (input == 'ä')
+         output = "ae";
+      else if (input == 'ö')
+         output = "oe";
+      else if (input == 'ü')
+         output = "ue";
+      else if (input == 'ß') output = "ss";
       return output;
    }
+
+   public boolean stringsAreEqual(String a, String b) {
+      return a.equals(b);
+   }
+
 }

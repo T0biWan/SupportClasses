@@ -14,11 +14,11 @@ import tobi_wan.support.StringOperations;
 
 
 public class DatabaseOperationsSQLite {
-   private Connection                   connection;
-   private Statement                    statement;
-   private PreparedStatement            preparedStatement;
-   private ResultSet                    resultSet;
-   private StringOperations si = new StringOperations();
+   private Connection        connection;
+   private Statement         statement;
+   private PreparedStatement preparedStatement;
+   private ResultSet         resultSet;
+   private StringOperations  so = new StringOperations();
 
    public DatabaseOperationsSQLite() {
       connection = null;
@@ -61,8 +61,8 @@ public class DatabaseOperationsSQLite {
          for (int column = 0; column < table.getNumberOfColumns(); column++) {
             int sqlColumn = column + 1;
             String input = table.getRow(row)[column];
-            if (si.stringIsNumber(input))
-               preparedStatement.setInt(sqlColumn, si.parseStringToInt(input));
+            if (so.stringIsNumber(input))
+               preparedStatement.setInt(sqlColumn, so.parseStringToInt(input));
             else preparedStatement.setString(sqlColumn, input);
          }
          preparedStatement.executeUpdate();
@@ -100,6 +100,16 @@ public class DatabaseOperationsSQLite {
       data.add(getColumnNames(resultSet));
       data.addAll(getRows(resultSet));
       return new Table(data);
+   }
+
+   public void changeElementToForeignKey(Table tableGettingFK, int columnGettingFK, Table tableGivingFK, int columnWithValueOfFK, int columnOfFK) {
+      for (int i = 0; i < tableGettingFK.getNumberOfRows(); i++) {
+         for (int j = 0; j < tableGivingFK.getNumberOfRows(); j++) {
+            if (so.stringsAreEqual(tableGettingFK.getRow(i)[columnGettingFK], tableGivingFK.getRow(j)[columnWithValueOfFK])) {
+               tableGettingFK.getRow(i)[columnGettingFK] = tableGivingFK.getRow(j)[columnOfFK];
+            }
+         }
+      }
    }
 
 }
