@@ -26,12 +26,14 @@
 package tobi_wan.dataStructure;
 
 import java.util.ArrayList;
+import tobi_wan.support.StandardOutput;
 import tobi_wan.support.StringContainingIntegerValue;
 
 
 
 public class Table {
    // Attribute
+   static StandardOutput                s               = new StandardOutput();
    private StringContainingIntegerValue si              = new StringContainingIntegerValue();
    private String                       tableName;
    private int                          numberOfColumns;
@@ -111,14 +113,14 @@ public class Table {
 
    private void printTableSeparation() {
       int [] maxStringLengthOfColumn = getMaxStringLengthOfColumn();
-      System.out.print(leftConnecter);
+      s.print(leftConnecter);
       for (int i = 0; i < numberOfColumns; i++) {
          for (int j = 0; j < maxStringLengthOfColumn[i]; j++) {
-            System.out.print(separator);
+            s.print(separator);
          }
-         if (i < numberOfColumns - 1) System.out.print(middleConnecter);
+         if (i < numberOfColumns - 1) s.print(middleConnecter);
       }
-      System.out.println(rightConnecter);
+      s.println(rightConnecter);
    }
 
    private int [] getMaxStringLengthOfColumn() {
@@ -134,17 +136,17 @@ public class Table {
 
    private void printTableRow(int row) {
       int [] maxStringLengthOfColumn = getMaxStringLengthOfColumn();
-      System.out.print(leftBorder);
+      s.print(leftBorder);
       for (int column = 0; column < numberOfColumns; column++) {
          String element = data.get(row)[column];
          if (si.isNumber(element)) {
-            System.out.printf("%" + maxStringLengthOfColumn[column] + "s", element);
+            s.printf("%" + maxStringLengthOfColumn[column] + "s", element);
          } else {
-            System.out.printf("%-" + maxStringLengthOfColumn[column] + "s", element);
+            s.printf("%-" + maxStringLengthOfColumn[column] + "s", element);
          }
-         if (column < numberOfColumns - 1) System.out.print(middleBorder);
+         if (column < numberOfColumns - 1) s.print(middleBorder);
       }
-      System.out.println(rightBorder);
+      s.println(rightBorder);
    }
 
    public void printTable() {
@@ -165,6 +167,21 @@ public class Table {
          printTableRow(row);
       }
       printTableSeparation();
+   }
+
+   public void printTableWithHeadline() {
+      ArrayList<String []> headlineData = new ArrayList();
+      String [] headlineStrings = { "Tabelle: " + getTableName(), "Columns: " + getNumberOfColumns() + "Rows: " + getNumberOfRows() };
+      for (String element : headlineStrings) {
+         String [] row = new String [numberOfColumns];
+         for (int i = 0; i < numberOfColumns; i++) {
+            if (i == 0)
+               row[i] = element;
+            else row[i] = "";
+         }
+         headlineData.add(row);
+      }
+      headlineData.addAll(data);
    }
 
 } // class Table

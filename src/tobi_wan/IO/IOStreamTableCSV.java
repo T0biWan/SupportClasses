@@ -27,4 +27,22 @@ public class IOStreamTableCSV extends IOStreamCSV {
          data.add(line.split(getSeparator()));
       return new Table(data);
    }
+
+   public void writeCSVFromTable(String path, Table table) throws IOException {
+      ArrayList<String> output = new ArrayList();
+      for (String [] row : table.getAllRows()) {
+         output.add(makeCSVRow(row));
+      }
+      Files.write(Paths.get(path), output);
+   }
+
+   private String makeCSVRow(String [] row) {
+      String outputRow = "";
+      for (int i = 0; i < row.length; i++) {
+         outputRow += row[i];
+         if (i < row.length - 1) outputRow += ";";
+      }
+      return outputRow;
+   }
+
 }

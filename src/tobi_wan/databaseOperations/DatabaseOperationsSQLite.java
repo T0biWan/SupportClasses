@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -70,8 +71,17 @@ public class DatabaseOperationsSQLite {
       connection.setAutoCommit(true);
    }
 
-   public Table tableOutOfQuery(String sqlDMLStatement) throws SQLException {
-      ResultSet resultSet = sqlDataManipulation(sqlDMLStatement);
+   private String [] getColumnNames(ResultSet resultSet) throws SQLException {
+      ResultSetMetaData meta = resultSet.getMetaData();
+      int numberOfColumns = meta.getColumnCount();
+      String [] row = new String [numberOfColumns];
+      for (int i = 0; i < numberOfColumns; i++) {
+         row[i] = meta.getColumnName(i + 1);
+      }
+      return row;
+   }
+
+   private ArrayList<String []> getRows(ResultSet resultSet) throws SQLException {
       int numberOfColumns = resultSet.getMetaData().getColumnCount();
       ArrayList<String []> data = new ArrayList();
       while (resultSet.next()) {
@@ -81,6 +91,14 @@ public class DatabaseOperationsSQLite {
          }
          data.add(row);
       }
+      return data;
+   }
+
+   public Table tableOutOfQuery(String sqlDMLStatement) throws SQLException {
+      ArrayList<String []> data = new ArrayList();
+      ResultSet resultSet = sqlDataManipulation(sqlDMLStatement);
+      data.add(getColumnNames(resultSet));
+      data.addAll(getRows(resultSet));
       return new Table(data);
    }
 

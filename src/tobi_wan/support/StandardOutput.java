@@ -67,7 +67,7 @@ public class StandardOutput {
       setSeparatorReptition(separatorReptition);
    } // SupportMethods
 
-   private StandardOutput() {
+   public StandardOutput() {
       this("*", 80);
    } // SupportMethods
 
