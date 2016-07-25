@@ -33,22 +33,22 @@ import tobi_wan.support.StringOperations;
 
 public class Table {
    // Attribute
-   static StandardOutput                s               = new StandardOutput();
-   private StringOperations si              = new StringOperations();
-   private String                       tableName;
-   private int                          numberOfColumns;
-   private String []                    tableRows;
-   private ArrayList<String []>         data            = new ArrayList<>();
-   String                               border          = "|";
-   String                               separator       = "-";
-   String                               connector       = "+";
-   String                               space           = " ";
-   String                               leftBorder      = border + space;
-   String                               middleBorder    = space + border + space;
-   String                               rightBorder     = space + border;
-   String                               leftConnecter   = connector + separator;
-   String                               middleConnecter = separator + connector + separator;
-   String                               rightConnecter  = separator + connector;
+   static StandardOutput        s               = new StandardOutput();
+   private StringOperations     si              = new StringOperations();
+   private String               tableName;
+   private int                  numberOfColumns;
+   private String []            tableRows;
+   private ArrayList<String []> data            = new ArrayList<>();
+   String                       border          = "|";
+   String                       separator       = "-";
+   String                       connector       = "+";
+   String                       space           = " ";
+   String                       leftBorder      = border + space;
+   String                       middleBorder    = space + border + space;
+   String                       rightBorder     = space + border;
+   String                       leftConnecter   = connector + separator;
+   String                       middleConnecter = separator + connector + separator;
+   String                       rightConnecter  = separator + connector;
 
    // Konstruktor
    public Table(int numberOfColumns) {

@@ -97,16 +97,33 @@ public class DatabaseOperationsSQLite {
    public Table tableOutOfQuery(String sqlDMLStatement) throws SQLException {
       ArrayList<String []> data = new ArrayList();
       ResultSet resultSet = sqlDataManipulation(sqlDMLStatement);
+      data.addAll(getRows(resultSet));
+      return new Table(data);
+   }
+
+   public Table tableWithColumnNamesOutOfQuery(String sqlDMLStatement) throws SQLException {
+      ArrayList<String []> data = new ArrayList();
+      ResultSet resultSet = sqlDataManipulation(sqlDMLStatement);
       data.add(getColumnNames(resultSet));
       data.addAll(getRows(resultSet));
       return new Table(data);
    }
 
-   public void changeElementToForeignKey(Table tableGettingFK, int columnGettingFK, Table tableGivingFK, int columnWithValueOfFK, int columnOfFK) {
+   private boolean valuesAreEqual(String value1, String value2) {
+      return so.stringsAreEqual(value1, value2);
+   }
+
+   public void changeValueToForeignKey(Table tableGettingFK, int columnGettingFK, Table tableGivingFK, int columnGivingFK, int columnContainingFK) {
+      // Die Tabelle "tableGettingFK" bekommt in Spalte "columnGettingFK" den FK
+      // aus "columnOfFK".
+      // Vorraussetzung ist das ein Wert von "columnGettingFK" uebereinstimmt
+      // mit einem Wert aus "columnContainingFK"
       for (int i = 0; i < tableGettingFK.getNumberOfRows(); i++) {
          for (int j = 0; j < tableGivingFK.getNumberOfRows(); j++) {
-            if (so.stringsAreEqual(tableGettingFK.getRow(i)[columnGettingFK], tableGivingFK.getRow(j)[columnWithValueOfFK])) {
-               tableGettingFK.getRow(i)[columnGettingFK] = tableGivingFK.getRow(j)[columnOfFK];
+            String valueGettingFK = tableGettingFK.getRow(i)[columnGettingFK];
+            String valueGivingFK = tableGivingFK.getRow(j)[columnGivingFK];
+            if (valuesAreEqual(valueGettingFK, valueGivingFK)) {
+               tableGettingFK.getRow(i)[columnGettingFK] = tableGivingFK.getRow(j)[columnContainingFK];
             }
          }
       }
