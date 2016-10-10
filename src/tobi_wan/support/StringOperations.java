@@ -65,4 +65,38 @@ public class StringOperations {
       return a.equals(b);
    }
 
+   public String rotateString(String string) {
+      char [] inputString = string.toCharArray();
+      String outputString = "";
+      for (int i = inputString.length; i > 0; i--) {
+         outputString += inputString[i - 1];
+      }
+      return outputString;
+   }
+
+   public String charArrayToString(char [] charArray) {
+      String outputString = "";
+      for (char index : charArray)
+         outputString += index;
+      return outputString;
+   }
+
+   public String ceasarEncoding(String inputString, int key) {
+      String outputString = "";
+      char [] charArray = inputString.toCharArray();
+      for (int i = 0; i < charArray.length; i++) {
+         outputString += (char) ((int) charArray[i] + key);
+      }
+      return outputString;
+   }
+
+   public String ceasarDecoding(String inputString, int key) {
+      String outputString = "";
+      char [] charArray = inputString.toCharArray();
+      for (int i = 0; i < charArray.length; i++) {
+         outputString += (char) ((int) charArray[i] - key);
+      }
+      return outputString;
+   }
+
 }
