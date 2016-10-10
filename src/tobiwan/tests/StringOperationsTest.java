@@ -1,11 +1,11 @@
-package tobi_wan.tests;
+package tobiwan.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import tobi_wan.support.StringOperations;
+import tobiwan.support.StringOperations;
 
 
 

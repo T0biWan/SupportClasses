@@ -1,4 +1,4 @@
-package tobi_wan.IO;
+package tobiwan.IO;
 
 import java.io.IOException;
 import java.nio.file.Files;

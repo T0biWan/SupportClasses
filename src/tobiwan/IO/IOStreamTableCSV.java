@@ -1,11 +1,11 @@
-package tobi_wan.IO;
+package tobiwan.IO;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import tobi_wan.dataStructure.Table;
+import tobiwan.dataStructure.Table;
 
 
 

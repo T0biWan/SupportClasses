@@ -23,10 +23,10 @@
       String toString()
       void printTable()
  ----------------------------------------------------------------------*/
-package tobi_wan.dataStructure;
+package tobiwan.dataStructure;
 
 import java.util.ArrayList;
-import tobi_wan.support.StandardOutput;
+import tobiwan.support.StandardOutput;
 
 
 

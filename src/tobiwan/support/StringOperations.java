@@ -1,4 +1,4 @@
-package tobi_wan.support;
+package tobiwan.support;
 
 import java.security.SecureRandom;
 import java.util.Random;

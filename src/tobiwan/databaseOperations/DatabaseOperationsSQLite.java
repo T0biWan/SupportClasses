@@ -1,4 +1,4 @@
-package tobi_wan.databaseOperations;
+package tobiwan.databaseOperations;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,8 +8,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import tobi_wan.dataStructure.Table;
-import tobi_wan.support.StringOperations;
+import tobiwan.dataStructure.Table;
+import tobiwan.support.StringOperations;
 
 
 
